@@ -16,9 +16,12 @@ function App() {
   const containerRef = useRef(null)
 
   useEffect(() => {
+    // Detect mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768
+    
     // Ultra-smooth cinematic scroll setup with Lenis
     const lenis = new Lenis({
-      duration: 3.2, // Maximum smoothness - very long duration
+      duration: isMobile ? 1.2 : 1.8, // Faster for desktop, reduced for mobile
       easing: (t) => {
         // Ultra-smooth cubic bezier easing (ease-out-cubic) - very gentle
         return 1 - Math.pow(1 - t, 3);
@@ -26,12 +29,12 @@ function App() {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.35, // Very smooth, controlled scrolling
+      wheelMultiplier: isMobile ? 0.35 : 0.55, // Faster, more responsive for desktop
       smoothTouch: true, // Enable smooth touch for mobile
-      touchMultiplier: 2.2, // Extra smooth touch scrolling
+      touchMultiplier: isMobile ? 0.8 : 2.2, // Reduced for mobile - less aggressive
       infinite: false,
       syncTouch: true,
-      touchInertiaMultiplier: 70, // Maximum smooth touch inertia
+      touchInertiaMultiplier: isMobile ? 20 : 70, // Significantly reduced for mobile
       normalizeWheel: true, // Normalize wheel events
     })
 
