@@ -21,7 +21,7 @@ function App() {
     
     // Ultra-smooth cinematic scroll setup with Lenis
     const lenis = new Lenis({
-      duration: isMobile ? 1.0 : 2.4, // Natural duration for mobile, ultra-smooth for desktop
+      duration: isMobile ? 1.2 : 2.4, // Slower, more controlled duration for mobile, ultra-smooth for desktop
       easing: (t) => {
         // Ultra-smooth cubic bezier easing (ease-out-cubic) - very gentle
         return 1 - Math.pow(1 - t, 3);
@@ -31,10 +31,10 @@ function App() {
       smoothWheel: true,
       wheelMultiplier: isMobile ? 0.35 : 0.45, // Ultra-smooth, more controlled for desktop
       smoothTouch: true, // Enable smooth touch for mobile
-      touchMultiplier: isMobile ? 0.6 : 2.2, // Natural touch multiplier for mobile - prevents full page scroll
+      touchMultiplier: isMobile ? 0.4 : 2.2, // Reduced touch multiplier for mobile - slower, more controlled scrolling
       infinite: false,
       syncTouch: true,
-      touchInertiaMultiplier: isMobile ? 12 : 70, // Reduced inertia for mobile - prevents excessive scrolling
+      touchInertiaMultiplier: isMobile ? 8 : 70, // Further reduced inertia for mobile - prevents fast scrolling
       normalizeWheel: true, // Normalize wheel events
     })
 
